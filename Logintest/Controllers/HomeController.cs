@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Logintest.Models;
+using Logintest.Data;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,10 @@ using Stripe;
 
 
 namespace Logintest.Controllers
-{ 
-    //[Route("create-payment-intent")]
-    //[ApiController]
+{
     public class HomeController : Controller
-    { 
+    {
+        private readonly ApplicationDbContext AppDb;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
