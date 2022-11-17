@@ -23,11 +23,11 @@ namespace Logintest.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
         }
         [HttpPost]
         public ActionResult Get()
         {
+            StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
             var options = new PaymentIntentCreateOptions
             {
                 Amount = 10,
