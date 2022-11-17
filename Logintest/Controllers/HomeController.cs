@@ -26,7 +26,7 @@ namespace Logintest.Controllers
             StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
         }
         [HttpPost]
-        public ActionResult Create(PaymentIntentCreateRequest request)
+        public ActionResult Get()
         {
             var options = new PaymentIntentCreateOptions
             {
@@ -40,18 +40,6 @@ namespace Logintest.Controllers
             var service = new PaymentIntentService();
             var paymentIntent = service.Create(options);
             return Json(new { clientSecret = paymentIntent.ClientSecret });
-        }
-
-        public class Item
-        {
-            [JsonProperty("id")]
-            public string Id { get; set; }
-        }
-
-        public class PaymentIntentCreateRequest
-        {
-            [JsonProperty("items")]
-            public Item[] Items { get; set; }
         }
         public IActionResult Index()
         {
