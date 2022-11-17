@@ -18,7 +18,7 @@ namespace Logintest.Controllers
     //[ApiController]
     public class HomeController : Controller
     { 
-        /*private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -28,26 +28,18 @@ namespace Logintest.Controllers
         [HttpPost]
         public ActionResult Create(PaymentIntentCreateRequest request)
         {
-            var paymentIntentService = new PaymentIntentService();
-            var paymentIntent = paymentIntentService.Create(new PaymentIntentCreateOptions
+            var options = new PaymentIntentCreateOptions
             {
-                Amount = CalculateOrderAmount(request.Items),
+                Amount = 10,
                 Currency = "jpy",
                 AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
                 {
                     Enabled = true,
                 },
-            });
-
+            };
+            var service = new PaymentIntentService();
+            var paymentIntent = service.Create(options);
             return Json(new { clientSecret = paymentIntent.ClientSecret });
-        }
-
-        private int CalculateOrderAmount(Item[] items)
-        {
-            // Replace this constant with a calculation of the order's amount
-            // Calculate the order total on the server to prevent
-            // people from directly manipulating the amount on the client
-            return 1400;
         }
 
         public class Item
@@ -60,7 +52,7 @@ namespace Logintest.Controllers
         {
             [JsonProperty("items")]
             public Item[] Items { get; set; }
-        }*/
+        }
         public IActionResult Index()
         {
             return View();
