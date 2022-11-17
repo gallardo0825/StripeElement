@@ -13,49 +13,17 @@ using Stripe;
 
 
 namespace Logintest.Controllers
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            WebHost.CreateDefaultBuilder(args)
-              .UseUrls("http://0.0.0.0:4242")
-              .UseWebRoot("public")
-              .UseStartup<Startup>()
-              .Build()
-              .Run();
-        }
-    }
-
-    public class Startup
-    {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().AddNewtonsoftJson();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            // This is your test secret API key.
-            StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
-
-            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-            app.UseRouting();
-            app.UseStaticFiles();
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
-        }
-    }
-
-    [Route("create-payment-intent")]
-    [ApiController]
+{ 
+    //[Route("create-payment-intent")]
+    //[ApiController]
     public class HomeController : Controller
-    {
-
-        private readonly ILogger<HomeController> _logger;
+    { 
+        /*private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
         }
         [HttpPost]
         public ActionResult Create(PaymentIntentCreateRequest request)
@@ -92,13 +60,11 @@ namespace Logintest.Controllers
         {
             [JsonProperty("items")]
             public Item[] Items { get; set; }
-        }
-
+        }*/
         public IActionResult Index()
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
