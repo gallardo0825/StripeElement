@@ -15,16 +15,18 @@ using Stripe;
 
 namespace Logintest.Controllers
 {
+    /*[Route("create-payment-intent")]
+    [ApiController]*/
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext AppDb;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController (ILogger<HomeController> logger)
         {
             _logger = logger;
         }
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Get()
         {
             StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
@@ -38,9 +40,10 @@ namespace Logintest.Controllers
                 },
             };
             var service = new PaymentIntentService();
-            var paymentIntent = service.Create(options);
+            var paymentIntent = service.Create(options);//Fetch関数使う？
             return Json(new { clientSecret = paymentIntent.ClientSecret });
-        }
+        }*/
+
         public IActionResult Index()
         {
             return View();

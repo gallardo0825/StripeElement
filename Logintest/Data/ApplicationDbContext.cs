@@ -11,7 +11,7 @@ namespace Logintest.Data
         }
         public class AppDbContext : DbContext
         {
-            public DbSet<Customer> Customer { get; set; }
+            public DbSet<Customer>? Customer { get; set; }
         }
     }
 }
