@@ -18,14 +18,15 @@
     <div id="card-element">
       <!-- Stripe Element がここに入る。 -->
     </div>
-    <!-- Element のエラー。 -->
-    <div id="card-errors" role="alert"></div>
+    <div id="card-errors" role="alert">
+      <!-- Element のエラー。 -->
+    </div>
   </div>
 
   <button>お支払い</button>
 </form>
- <script type="text/javascript">//外部依存型にしたい
- var stripe = Stripe('{{公開可能APIキー}}');
+ <script type="text/javascript">//外部参照型にしたい？
+var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 var elements = stripe.elements();
 var style = {
     base: {
@@ -68,8 +69,8 @@ form.addEventListener('submit', function(event) {
   });
 });
 
-/*
- *async function initialize() {
+/*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
+async function initialize() {
   const response = await fetch("/create-payment-intent", {
     method: "POST",
     headers: 
@@ -81,6 +82,10 @@ form.addEventListener('submit', function(event) {
     theme: 'stripe',
   };
   elements = stripe.elements({ appearance, clientSecret });
+
+  const paymentElementOptions = {
+    layout: "tabs",
+  };
 
   const paymentElement = elements.create("payment");
   paymentElement.mount("#payment-element");
