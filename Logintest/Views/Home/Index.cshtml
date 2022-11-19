@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <title>payment</title>
-    <script src="https://js.stripe.com/v3/"></script>
+   
   </head>
   <body>
     <form action="/charge" method="post" id="payment-form">
@@ -24,7 +24,67 @@
 
   <button>お支払い</button>
 </form>
-<script src='https://js.stripe.com/v3/'></script>
-<script  src="index.cshtml.js"></script>
+ <script type="text/javascript">//外部依存型にしたい
+ var stripe = Stripe('{{公開可能APIキー}}');
+var elements = stripe.elements();
+var style = {
+    base: {
+        // ここでStyleの調整
+        fontSize: '16px',
+        color: "#32325d",
+    }
+};
+
+// card Element のインスタンスを作成
+var card = elements.create('card', { style: style });
+
+// マウント
+card.mount('#card-element');
+//項目入力時のError処理
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+//トークン作成もしくはエラー表示
+
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // エラー表示.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // トークンをサーバに送信
+      stripeTokenHandler(result.token);
+    }
+  });
+});
+
+/*
+ *async function initialize() {
+  const response = await fetch("/create-payment-intent", {
+    method: "POST",
+    headers: 
+    body: 
+  });
+  const { clientSecret } = await response.json();
+
+  const appearance = {
+    theme: 'stripe',
+  };
+  elements = stripe.elements({ appearance, clientSecret });
+
+  const paymentElement = elements.create("payment");
+  paymentElement.mount("#payment-element");
+}*/
+  </script>
   </body>
 </html>
