@@ -68,6 +68,17 @@ form.addEventListener('submit', function(event) {
     }
   });
 });
+ //tokenをバックエンドに送信
+function stripeTokenHandler(token) {
+  // tokenをフォームへ包含し送信
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+  form.submit();
+}
 
 /*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 async function initialize() {
@@ -87,8 +98,8 @@ async function initialize() {
     layout: "tabs",
   };
 
-  const paymentElement = elements.create("payment");
-  paymentElement.mount("#payment-element");
+  const card = elements.create("card");
+  card.mount("#card-element");
 }*/
   </script>
   </body>

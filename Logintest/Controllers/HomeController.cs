@@ -26,6 +26,7 @@ namespace Logintest.Controllers
         {
             _logger = logger;
         }
+
         /*[HttpPost]
         public ActionResult Get()
         {
