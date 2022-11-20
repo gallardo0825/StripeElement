@@ -26,7 +26,7 @@
   <button>お支払い</button>
 </form>
  <script type="text/javascript">//外部参照型にしたい？
-var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
+/*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 var elements = stripe.elements();
 var style = {
     base: {
@@ -79,28 +79,39 @@ function stripeTokenHandler(token) {
   form.appendChild(hiddenInput);
   form.submit();
 }
+*/
+var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
+var elements = stripe.elements();
+var style = {
+    base: {
+        // ここでStyleの調整
+        fontSize: '16px',
+        color: "#32325d",
+    }
+};
+const card = elements.create("card");
+card.mount("#card-element");
 
-/*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 async function initialize() {
   const response = await fetch("/create-payment-intent", {
     method: "POST",
-    headers: 
-    body: 
-  });
+    headers: {'Content-Type': 'application/json' },
+    body: JSON.stringify({
+         currency: 'jpy',
+      paymentMethodType: 'card'}),
+});
   const { clientSecret } = await response.json();
 
   const appearance = {
     theme: 'stripe',
   };
-  elements = stripe.elements({ appearance, clientSecret });
 
   const paymentElementOptions = {
     layout: "tabs",
   };
 
-  const card = elements.create("card");
-  card.mount("#card-element");
-}*/
+  
+}
   </script>
   </body>
 </html>

@@ -27,7 +27,7 @@ namespace Logintest.Controllers
             _logger = logger;
         }
 
-        /*[HttpPost]
+        [HttpPost]
         public ActionResult Get()
         {
             StripeConfiguration.ApiKey = "sk_test_51LvqPVCgb8glDeFebFAlVXi7JxsdJGI7ORKqEEdGyJYJrnqKX1Hdnh7DwTFPbkJDzSCvDgUyffjFQk4tlzcOEHGS00tTtrhwFA";
@@ -35,7 +35,7 @@ namespace Logintest.Controllers
             {
                 Amount = 10,
                 Currency = "jpy",
-                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
+                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions//automatic_payment_methods が有効になっていると、ダッシュボードで設定した決済手段で PaymentIntent が作成されます。
                 {
                     Enabled = true,
                 },
@@ -43,7 +43,7 @@ namespace Logintest.Controllers
             var service = new PaymentIntentService();
             var paymentIntent = service.Create(options);//Fetch関数使う？
             return Json(new { clientSecret = paymentIntent.ClientSecret });
-        }*/
+        }
 
         public IActionResult Index()
         {
