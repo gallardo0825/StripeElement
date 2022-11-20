@@ -26,7 +26,7 @@
   <button id="submit">お支払い</button>
 </form>
  <script type="text/javascript">//外部参照型にしたい？
-/*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
+var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 var elements = stripe.elements();
 var style = {
     base: {
@@ -41,6 +41,7 @@ var card = elements.create('card', { style: style });
 
 // マウント
 card.mount('#card-element');
+/*
 //項目入力時のError処理
 card.addEventListener('change', function(event) {
   var displayError = document.getElementById('card-errors');
