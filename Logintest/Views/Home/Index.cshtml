@@ -10,8 +10,8 @@
    
   </head>
   <body>
-    <form id="payment-form" data-secret="@ViewData["ClientSecret"]">
-  <div class="card-form">
+    <form action="/charge" method="post" id="payment-form">
+  <div class="form-row">
     <label for="card-element">
       クレジット・デビットカード番号
     </label>
@@ -26,7 +26,7 @@
   <button id="submit">お支払い</button>
 </form>
  <script type="text/javascript">//外部参照型にしたい？
-var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
+/*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 var elements = stripe.elements();
 var style = {
     base: {
@@ -41,7 +41,6 @@ var card = elements.create('card', { style: style });
 
 // マウント
 card.mount('#card-element');
-/*
 //項目入力時のError処理
 card.addEventListener('change', function(event) {
   var displayError = document.getElementById('card-errors');
@@ -81,8 +80,6 @@ function stripeTokenHandler(token) {
   form.submit();
 }*/
 
-
-
 var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 var elements = stripe.elements();
 var style = {
@@ -92,20 +89,26 @@ var style = {
         color: "#32325d",
     }
 };
-
 // card Element のインスタンスを作成
 var card = elements.create('card', { style: style });
-
 // マウント
 card.mount('#card-element');
-/*const items = [{ id: "xl-tshirt" }];
 
-initialize();
-checkStatus();
+/*
+//ストライプに支払いを送信
+const form = document.getElementById('payment-form');
 
-document
-  .querySelector("#payment-form")
-  .addEventListener("submit", handleSubmit);/*
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const {error} = await stripe.confirmPayment({
+    //`Elements` instance that was used to create the Payment Element
+    elements,
+    confirmParams: {
+      return_url: 'https://example.com/order/123/complete',
+    },
+  });*/
+
 
   </script>
   </body>
