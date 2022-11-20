@@ -10,8 +10,8 @@
    
   </head>
   <body>
-    <form action="/charge" method="post" id="payment-form">
-  <div class="form-row">
+    <form id="payment-form" data-secret="@ViewData["ClientSecret"]">
+  <div class="card-form">
     <label for="card-element">
       クレジット・デビットカード番号
     </label>
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <button>お支払い</button>
+  <button id="submit">お支払い</button>
 </form>
  <script type="text/javascript">//外部参照型にしたい？
 /*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
@@ -78,40 +78,18 @@ function stripeTokenHandler(token) {
   hiddenInput.setAttribute('value', token.id);
   form.appendChild(hiddenInput);
   form.submit();
-}
-*/
+}*/
+
 var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
-var elements = stripe.elements();
-var style = {
-    base: {
-        // ここでStyleの調整
-        fontSize: '16px',
-        color: "#32325d",
-    }
-};
-const card = elements.create("card");
-card.mount("#card-element");
+const items = [{ id: "xl-tshirt" }];
 
-async function initialize() {
-  const response = await fetch("/create-payment-intent", {
-    method: "POST",
-    headers: {'Content-Type': 'application/json' },
-    body: JSON.stringify({
-         currency: 'jpy',
-      paymentMethodType: 'card'}),
-});
-  const { clientSecret } = await response.json();
+initialize();
+checkStatus();
 
-  const appearance = {
-    theme: 'stripe',
-  };
+document
+  .querySelector("#payment-form")
+  .addEventListener("submit", handleSubmit);
 
-  const paymentElementOptions = {
-    layout: "tabs",
-  };
-
-  
-}
   </script>
   </body>
 </html>
