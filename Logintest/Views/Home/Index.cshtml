@@ -81,6 +81,7 @@ function stripeTokenHandler(token) {
 }*/
 
 var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
+const elements = stripe.elements();
 const items = [{ id: "xl-tshirt" }];
 
 initialize();
@@ -89,6 +90,10 @@ checkStatus();
 document
   .querySelector("#payment-form")
   .addEventListener("submit", handleSubmit);
+
+const paymentElement = elements.create('card');
+paymentElement.mount('#card-element');
+
 
   </script>
   </body>
