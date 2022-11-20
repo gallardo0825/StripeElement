@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <title>payment</title>
-   
+    <script src="https://js.stripe.com/v3/"></script>
   </head>
   <body>
     <form action="/charge" method="post" id="payment-form">
@@ -25,7 +25,7 @@
 
   <button id="submit">お支払い</button>
 </form>
- <script type="text/javascript">//外部参照型にしたい？
+  <script src="https://js.stripe.com/v3/"></script>//外部参照型にしたい？
 /*var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
 var elements = stripe.elements();
 var style = {
