@@ -80,20 +80,31 @@ function stripeTokenHandler(token) {
   form.submit();
 }*/
 
+
+
 var stripe = Stripe('pk_test_51LvqPVCgb8glDeFeUR36pjfxK76LI9ydEBwyOp0DhAM1oAm910nCPX6HBUrhJvgGzZlyRbn0UVaGvsaUaZ4OgOTb00uXxqOXQt');
-const elements = stripe.elements();
-const items = [{ id: "xl-tshirt" }];
+var elements = stripe.elements();
+var style = {
+    base: {
+        // ここでStyleの調整
+        fontSize: '16px',
+        color: "#32325d",
+    }
+};
+
+// card Element のインスタンスを作成
+var card = elements.create('card', { style: style });
+
+// マウント
+card.mount('#card-element');
+/*const items = [{ id: "xl-tshirt" }];
 
 initialize();
 checkStatus();
 
 document
   .querySelector("#payment-form")
-  .addEventListener("submit", handleSubmit);
-
-const paymentElement = elements.create('card');
-paymentElement.mount('#card-element');
-
+  .addEventListener("submit", handleSubmit);/*
 
   </script>
   </body>
